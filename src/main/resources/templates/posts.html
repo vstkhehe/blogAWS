@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org">
+	<head>
+		<title> SPRINGBOOT COM DEPLOY AWS </title>
+		<!--ICONES-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+		<!--CSS BOOTSTRAP-->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+	</head>
+	
+		<body style="background-color:ghostwhite;">
+		
+			<header>
+				<nav class="navbar navbar-dark bg-primary">
+				  <div class="container-fluid">
+				    <a class="navbar-brand" href="#">Codeblog AWS</a>
+					    <a href="/newpost">
+					    	<button class="btn btn-outline-light" type="submit">Novo Post</button>
+					    </a>
+				  </div>				  				  
+				</nav>
+			</header>
+			
+			<section>
+			
+				<div class="container" style="width:700px; padding-bottom:30px;">
+					<nav aria-label="breadcrumb">
+					  <ol class="breadcrumb">
+					    <li class="breadcrumb-item active" style="color:azure" aria-current="page">Posts</li>
+					  </ol>
+					</nav>
+				</div>
+			
+				<div class="container" style="width:700px; padding-bottom:30px;" th:each="post : ${posts}">
+									
+					<div class="card" style="width: 50rem; background-color:floralwhite;" >
+					  <div class="card-body">
+					   <a th:href="${(#mvc.url('CC#getPostsDetails').arg(0,post.id)).build()}"> <h5 class="card-title">
+					    	<span th:text="${post.titulo}"></span>
+					    </h5></a>
+					    <h6 class="card-subtitle mb-2 text-muted">
+					  		<i class="material-icons">person_outline</i>
+					    	<span th:text="${post.autor}" style="color:dodgerblue"></span>
+					    	<i class="material-icons">date_range</i>
+					    	<span th:text="${post.data}" style="color:dodgerblue"></span>
+					    </h6>
+					    <p class="card-text">
+					    	<span th:utext="${#strings.abbreviate(post.texto,400)}"></span>
+					    </p>
+					    <a href="#" class="card-link">Card link</a>
+					    <a href="#" class="card-link">Another link</a>
+					  </div>
+					</div>
+					
+				
+				</div>
+			</section>		
+		
+		</body>
+
+</html>
